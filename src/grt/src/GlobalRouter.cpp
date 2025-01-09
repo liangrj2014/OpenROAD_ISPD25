@@ -348,9 +348,9 @@ void GlobalRouter::globalRoute(bool save_guides,
         if (is_non_leaf_clock) {
           continue;
         }
-        // if (net->getName().find("clk") != std::string::npos) {
-        //   continue;
-        // }
+        if (net->getName().find("clk") != std::string::npos) {
+          continue;
+        }
         out << net->getName() << "\n";
         out << "( \n";
         // print driver pin
