@@ -2586,11 +2586,11 @@ void FastRouteCore::saveCapacity()
     // out << "Layer: \n";
     out << num_layers_ << " " << x_grid_ << " " << y_grid_ << "\n";
     out << "0.00131579 4 5 5 5 5 5 5 5 5 5 5" << "\n";
-    for (int t=0; t<x_grid_; t++) {
+    for (int t=0; t<x_grid_-1; t++) {
       out << tile_size_ << " ";
     }
     out << "\n";
-    for (int t=0; t<y_grid_; t++) {
+    for (int t=0; t<y_grid_-1; t++) {
       out << tile_size_ << " ";
     }
     out << "\n";
@@ -2598,7 +2598,7 @@ void FastRouteCore::saveCapacity()
       bool is_vertical = layer_directions_[l] == odb::dbTechLayerDir::VERTICAL;
       if (is_vertical) {
         out << "metal" << l+1 << " " << is_vertical << " " << 400 << "\n";
-        for (int y=0; y<y_grid_-1; y++) {
+        for (int y=0; y<y_grid_; y++) {
           for (int x=0; x<x_grid_; x++) {
             out << v_edges_3D_[l][y][x].cap << " ";
           }
@@ -2607,7 +2607,7 @@ void FastRouteCore::saveCapacity()
       } else {
         out << "metal" << l+1 << " " << is_vertical << " " << 400 << "\n";
         for (int y=0; y<y_grid_; y++) {
-          for (int x=0; x<x_grid_-1; x++) {
+          for (int x=0; x<x_grid_; x++) {
             out << h_edges_3D_[l][y][x].cap << " ";
           }
           out << "\n";
