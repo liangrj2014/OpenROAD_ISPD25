@@ -351,6 +351,13 @@ void GlobalRouter::globalRoute(bool save_guides,
         if (net->getName().find("clk") != std::string::npos) {
           continue;
         }
+
+        // exclude nets with less than two pins
+        int pinCount = net->getNumPins();
+        if (pinCount < 2) {
+          continue;
+        }
+
         out << net->getName() << "\n";
         out << "( \n";
         // print driver pin
